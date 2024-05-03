@@ -5,7 +5,7 @@ const initialState = {
   news: [],
   isNewsLoading: false,
   hasError: false,
-  newsDetails: {},
+  newsDetails: [],
   isDetailsLoading: false,
   currentNewsItem: null,
   comments: [],
@@ -48,7 +48,7 @@ export const dataProcess = createSlice({
         state.hasError = false;
       })
       .addCase(fetchNewsDetails.fulfilled, (state, action) => {
-        state.newsDetails = action.payload;
+        state.newsDetails = [...state.newsDetails, action.payload];
         state.isDetailsLoading = false
       })
       .addCase(fetchNewsDetails.rejected, (state) => {

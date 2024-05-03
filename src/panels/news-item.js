@@ -18,7 +18,7 @@ export const NewsItem = ({ id }) => {
   return (
     <Cell key={item?.id} onClick={() => {
       dispatch(setCurrentNewsItem(item));
-      routeNavigator.push(`item/${item?.id}`)}}
+      routeNavigator.push(`/item/${item?.id}`)}}
       >
       <Div>
         <Title>{item?.title}</Title>

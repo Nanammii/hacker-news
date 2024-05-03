@@ -21,7 +21,7 @@ export const routes = RoutesConfig.create([
     createView(DEFAULT_VIEW, [
       createPanel(DEFAULT_VIEW_PANELS.HOME, '/', []),
       createPanel(DEFAULT_VIEW_PANELS.NEWS, `/${DEFAULT_VIEW_PANELS.NEWS}`, []),
-      createPanel(DEFAULT_VIEW_PANELS.ITEM, `/${DEFAULT_VIEW_PANELS.ITEM}`, []),
+      createPanel(DEFAULT_VIEW_PANELS.ITEM, `/${DEFAULT_VIEW_PANELS.ITEM}/:id`, []),
     ]),
   ]),
 ]);
