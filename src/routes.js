@@ -12,14 +12,14 @@ export const DEFAULT_VIEW = 'default_view';
 
 export const DEFAULT_VIEW_PANELS = {
   HOME: 'home',
-  ITEM: 'item'
+  NEWS_DETAILS: 'newsDetails'
 };
 
 export const routes = RoutesConfig.create([
   createRoot(DEFAULT_ROOT, [
     createView(DEFAULT_VIEW, [
       createPanel(DEFAULT_VIEW_PANELS.HOME, '/', []),
-      createPanel(DEFAULT_VIEW_PANELS.ITEM, `/${DEFAULT_VIEW_PANELS.ITEM}/:id`, []),
+      createPanel(DEFAULT_VIEW_PANELS.NEWS_DETAILS, `/${DEFAULT_VIEW_PANELS.NEWS_DETAILS}/:id`, []),
     ]),
   ]),
 ]);

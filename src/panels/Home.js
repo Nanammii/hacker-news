@@ -12,10 +12,9 @@ export const Home = ({id, items}) => {
   const dispatch = useDispatch();
   const isLoadingNews = useSelector(state => state.news.isNewsLoading);
   const newsDetails = useSelector(state => state.news.newsDetails);
-  console.log(newsDetails, newsDetails.length)
+  console.log(newsDetails.length)
 
   const displayedNews = items.slice(0, NEWS_PER_PAGE);
-  console.log(displayedNews)
 
   const handleRefreshNews = () => {
     dispatch(fetchNews());

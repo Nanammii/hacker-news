@@ -6,9 +6,9 @@ import PropTypes from "prop-types";
 export const NewsDetails = ({ id }) => {
 
   const dispatch = useDispatch();
-  const {idNews} = useParams();
+  const { idNews} = useParams();
   console.log(idNews)
-  const currentNews = useSelector(state => state.news.currentNewsItem);
+  const currentNews = useSelector(state => state.news.newsDetails.find(item => item.id === idNews));
   console.log(currentNews)
 
   return (
@@ -17,7 +17,7 @@ export const NewsDetails = ({ id }) => {
       <Group>
         <Div>
           hi
-          <Title level="1">{currentNews.title}</Title>
+          <Title level="1">{currentNews?.title}</Title>
         </Div>
       </Group>
     </Panel>
