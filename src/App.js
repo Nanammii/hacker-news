@@ -16,7 +16,7 @@ export const App = () => {
       <SplitCol>
         <View activePanel={activePanel}>
           <Home id="home" items={news} />
-          <NewsDetails />
+          <NewsDetails id="newsDetails" />
         </View>
       </SplitCol>
     </SplitLayout>

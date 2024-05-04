@@ -1,19 +1,12 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {fetchNewsDetails} from "../store/api-actions.js";
 import {Cell, Div, Subhead, Title} from "@vkontakte/vkui";
 import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 import PropTypes from "prop-types";
 import {setCurrentNewsItem} from "../store/data-process.js";
 
-export const NewsItem = ({ id }) => {
+export const NewsItem = ({ item }) => {
   const routeNavigator = useRouteNavigator();
   const dispatch = useDispatch()
-  const item = useSelector(state => state.news.newsDetails);
-
-  useEffect(() => {
-    dispatch(fetchNewsDetails(id))
-  }, [dispatch, id])
 
   return (
     <Cell key={item?.id} onClick={() => {
@@ -33,5 +26,5 @@ export const NewsItem = ({ id }) => {
 }
 
 NewsItem.propTypes = {
-  id: PropTypes.number.isRequired,
+  item: PropTypes.object
 }
