@@ -7,7 +7,6 @@ const initialState = {
   hasError: false,
   newsDetails: [],
   isDetailsLoading: false,
-  currentNewsItem: null,
   comments: [],
   isKids: false
 }
@@ -15,20 +14,6 @@ const initialState = {
 export const dataProcess = createSlice({
   name: 'news',
   initialState,
-  reducers: {
-    setCurrentNewsItem: (state, action) => {
-      state.currentNewsItem = action.payload;
-    },
-    setComment: (state, action) => {
-      state.comments.push(action.payload);
-    },
-    setIsKids: (state, action) => {
-      state.isKids = action.payload;
-    },
-    clearComments: (state) => {
-      state.comments = [];
-    },
-  },
   extraReducers(builder) {
     builder
       .addCase(fetchNews.pending, (state) => {
@@ -49,6 +34,7 @@ export const dataProcess = createSlice({
       })
       .addCase(fetchNewsDetails.fulfilled, (state, action) => {
         state.newsDetails = [...state.newsDetails, action.payload];
+        state.comments = [...state.comments, action.payload]
         state.isDetailsLoading = false
       })
       .addCase(fetchNewsDetails.rejected, (state) => {

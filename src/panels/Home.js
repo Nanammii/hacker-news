@@ -1,7 +1,7 @@
 import {Panel, PanelHeader, Header, Button, Group, List, Spinner} from '@vkontakte/vkui';
 import {useRouteNavigator} from '@vkontakte/vk-mini-apps-router';
 import PropTypes from 'prop-types';
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useMemo, useState} from "react";
 import {NEWS_PER_PAGE} from "../const.js";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchNews, fetchNewsDetails} from "../store/api-actions.js";
@@ -12,13 +12,14 @@ export const Home = ({id, items}) => {
   const dispatch = useDispatch();
   const isLoadingNews = useSelector(state => state.news.isNewsLoading);
   const newsDetails = useSelector(state => state.news.newsDetails);
-  console.log(newsDetails.length)
+  // console.log(newsDetails)
 
-  const displayedNews = items.slice(0, NEWS_PER_PAGE);
+  const displayedNews = useMemo(() => items.slice(0, NEWS_PER_PAGE), [items]);
+  // console.log(displayedNews)
 
-  const handleRefreshNews = () => {
+  const handleRefreshNews = useCallback(() => {
     dispatch(fetchNews());
-  }
+  });
 
   useEffect(() => {
     if (displayedNews.length > 0 && newsDetails.length === 0) {
@@ -28,7 +29,7 @@ export const Home = ({id, items}) => {
         }
       })
     }
-  }, [displayedNews, newsDetails])
+  }, [displayedNews, newsDetails, dispatch])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,14 +51,14 @@ export const Home = ({id, items}) => {
       </Group>
 
       <Group header={<Header mode="secondary">Новости</Header>}>
-        {isLoadingNews ? (
+        {isLoadingNews && newsDetails.length === NEWS_PER_PAGE ? (
             <Spinner />
           )
           : (
             <List>
               {newsDetails &&
                 newsDetails.map((item) => {
-                  return <NewsItem key={item.id} item={item}/>
+                  return <NewsItem key={item?.id} item={item}/>
                 })}
             </List>
           )}
