@@ -6,7 +6,7 @@ import {
   Link, List,
   Panel,
   PanelHeader,
-  PanelHeaderBack, Paragraph, Spinner,
+  PanelHeaderBack, Paragraph,
   Subhead,
   Textarea,
   Title
@@ -17,12 +17,11 @@ import PropTypes from "prop-types";
 import {useParams, useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 import {useEffect} from "react";
 import {fetchNewsDetails} from "../store/api-actions.js";
-import {NEWS_PER_PAGE} from "../const.js";
-import {NewsItem} from "./news-item.js";
 
 export const NewsDetails = ({ id }) => {
   const routeNavigator = useRouteNavigator();
   const dispatch = useDispatch();
+
   const idNews = useParams();
   const currentNews = useSelector(state => state.news.newsDetails)[0];
   console.log(idNews, currentNews)
@@ -89,7 +88,7 @@ export const NewsDetails = ({ id }) => {
                           <Caption weight="regular">Автор: {item?.by}</Caption>
                           <Caption weight="regular">Дата публикации: {new Date(item?.time * 1000).toLocaleString()}</Caption>
                         </Div>
-                        <Paragraph>{item.text}</Paragraph>
+                        <Paragraph style={{ whiteSpace: 'pre-wrap' }}>{item.text}</Paragraph>
                       </Cell>
                     )
                   })}

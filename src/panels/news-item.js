@@ -8,7 +8,7 @@ export const NewsItem = ({ item }) => {
   return (
     <Cell key={item?.id} onClick={() => routeNavigator.push(`/newsDetails/${item?.id}`)}
       >
-        <Title>{item?.title}</Title>
+        <Title style={{ whiteSpace: 'pre-wrap' }}>{item?.title}</Title>
         <Div style={{ display: 'flex', gap: '15px' }}>
           <Subhead weight="regular">Рейтинг: {item?.score}</Subhead>
           <Subhead weight="regular">Дата публикации: {new Date(item?.time * 1000).toLocaleString()}</Subhead>

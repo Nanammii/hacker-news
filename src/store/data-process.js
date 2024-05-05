@@ -8,7 +8,6 @@ const initialState = {
   newsDetails: [],
   isDetailsLoading: false,
   comments: [],
-  isKids: false
 }
 
 export const dataProcess = createSlice({
